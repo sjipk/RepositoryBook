@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GwZ-qa-SlF">
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9Gc-Mp-R6L"/>
+                                </connections>
+                            </mapView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2aw-sL-mId">
+                                <frame key="frameInset" minX="255" minY="38" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="fenceSwitchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="hYf-9K-Obx"/>
+                                </connections>
+                            </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaf-cb-J93">
+                                <frame key="frameInset" minX="16" minY="38" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="中心を指定"/>
+                                <connections>
+                                    <action selector="fenceCenterButtonPushed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vex-Ug-zvQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GwZ-qa-SlF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CIu-vZ-oVO"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GwZ-qa-SlF" secondAttribute="bottom" id="LY6-Ve-AHY"/>
+                            <constraint firstItem="GwZ-qa-SlF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Njr-PS-KNP"/>
+                            <constraint firstAttribute="trailing" secondItem="GwZ-qa-SlF" secondAttribute="trailing" id="xMW-Jf-ktv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fenceSwitch" destination="2aw-sL-mId" id="pP4-Uz-lFM"/>
+                        <outlet property="mapView" destination="GwZ-qa-SlF" id="gmS-hK-pqQ"/>
+                        <segue destination="BpQ-SD-MGc" kind="modal" identifier="showWebPage" modalTransitionStyle="coverVertical" id="Ywc-AF-Dnt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35.625" y="43.309859154929576"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="02j-uD-4du">
+            <objects>
+                <viewController id="BpQ-SD-MGc" customClass="WebViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gwY-e8-NKa"/>
+                        <viewControllerLayoutGuide type="bottom" id="6nP-rQ-HTJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Od6-5f-DqR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmP-8T-3dj">
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BpQ-SD-MGc" id="DBV-no-llJ"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6nP-rQ-HTJ" firstAttribute="top" secondItem="cmP-8T-3dj" secondAttribute="bottom" id="E1R-DQ-4F9"/>
+                            <constraint firstItem="cmP-8T-3dj" firstAttribute="leading" secondItem="Od6-5f-DqR" secondAttribute="leading" id="GkK-R6-vmv"/>
+                            <constraint firstAttribute="trailing" secondItem="cmP-8T-3dj" secondAttribute="trailing" id="PHd-nN-TFk"/>
+                            <constraint firstItem="cmP-8T-3dj" firstAttribute="top" secondItem="gwY-e8-NKa" secondAttribute="bottom" id="g7e-yd-tPi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="cmP-8T-3dj" id="wd7-ne-GtY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wyH-AP-KrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="809" y="44"/>
+        </scene>
+    </scenes>
+</document>
