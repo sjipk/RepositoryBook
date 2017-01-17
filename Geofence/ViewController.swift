@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import GoogleMobileAds
 
 let FENCE_1: Double = 100
 let FENCE_2: Double = 500
@@ -44,6 +45,7 @@ class CenterAnnotationView: MKAnnotationView {
 }
 
 
+
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
@@ -64,6 +66,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var regionBlock:    CLCircularRegion?
     var regionTown:     CLCircularRegion?
 
+    let AdMobID = "[Your AdMob ID]"
+    let TEST_ID = "ca-app-pub-3940256099942544/2934735716"
+    let AdMobTest:Bool = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -99,6 +106,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // ビーコンの初期化
 //        uuid = NSUUID(uuidString: "E2C56DB5-DFFB-48D2-B060-D0F5A71096E0")!
         
+/*******************************************************************************/
+        
+        print("Google Mobile Ads SDK version: \(GADRequest.sdkVersion())")
+        
+        var admobView = GADBannerView()
+        
+        admobView = GADBannerView(adSize:kGADAdSizeBanner)
+        admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - admobView.frame.height)
+        admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
+        
+        if AdMobTest {
+            admobView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        }
+        else{
+            admobView.adUnitID = AdMobID
+        }
+        
+        admobView.rootViewController = self
+        admobView.load(GADRequest())
+        
+        self.view.addSubview(admobView)
+        
+/*********************************************************************************/
     }
 
     override func viewDidAppear(_ animated: Bool) {
